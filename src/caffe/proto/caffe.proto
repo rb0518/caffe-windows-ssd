@@ -1536,7 +1536,6 @@ message ThresholdParameter {
   optional float threshold = 1 [default = 0]; // Strictly positive values
 }
 
-<<<<<<< HEAD
 // Message that stores parameters used by MILLayer
 message MILParameter {
   enum MILType {
