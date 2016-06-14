@@ -9,6 +9,10 @@
 #include "caffe/3rdparty/hungarian.h"
 #include "caffe/util/bbox_util.hpp"
 
+#if _MSC_VER
+# define snprintf _snprintf
+#endif
+
 namespace caffe {
 
 bool SortBBoxAscend(const NormalizedBBox& bbox1, const NormalizedBBox& bbox2) {
