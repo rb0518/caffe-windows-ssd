@@ -1,11 +1,5 @@
 # SSD: Single Shot MultiBox Detector
 
-[![Travis Build Status](https://api.travis-ci.org/Microsoft/caffe.svg?branch=master)](https://travis-ci.org/Microsoft/caffe) Travis (Linux build)
-
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/58wvckt0rcqtwnr5/branch/master?svg=true)] (https://ci.appveyor.com/project/pavlejosipovic/caffe-3a30a) AppVeyor (Windows build)
-
-[![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
-
 By [Wei Liu](http://www.cs.unc.edu/~wliu/), [Dragomir Anguelov](http://research.google.com/pubs/DragomirAnguelov.html), [Dumitru Erhan](http://research.google.com/pubs/DumitruErhan.html), [Christian Szegedy](http://research.google.com/pubs/ChristianSzegedy.html), [Scott Reed](http://www-personal.umich.edu/~reedscot/), Cheng-Yang Fu, [Alexander C. Berg](http://acberg.com).
 
 
@@ -20,6 +14,13 @@ SSD is an unified framework for object detection with a single network. You can 
 <center>
 
 ## Windows Setup
+
+[![Travis Build Status](https://api.travis-ci.org/Microsoft/caffe.svg?branch=master)](https://travis-ci.org/Microsoft/caffe) Travis (Linux build)
+
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/58wvckt0rcqtwnr5/branch/master?svg=true)] (https://ci.appveyor.com/project/pavlejosipovic/caffe-3a30a) AppVeyor (Windows build)
+
+[![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
+
 **Requirements**: Visual Studio 2013
 
 ### Pre-Build Steps
