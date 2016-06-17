@@ -63,6 +63,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_mnist_data", "conve
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_mnist_siamese_data", "convert_mnist_siamese_data\convert_mnist_siamese_data.vcxproj", "{3FC9FE87-557C-4BA3-97C1-A71E95DC3C2D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "get_image_size", "get_image_size\get_image_size.vcxproj", "{7307EAC1-4BE7-486C-B9F9-3A0DC1034E2D}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "upgrade_net_proto_binary", "upgrade_net_proto_binary\upgrade_net_proto_binary.vcxproj", "{7971DD9E-FEA9-446B-B432-F3910B8B84A8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "upgrade_net_proto_text", "upgrade_net_proto_text\upgrade_net_proto_text.vcxproj", "{4E201A07-4464-4ECF-8D5E-6B7E3B2D896B}"
