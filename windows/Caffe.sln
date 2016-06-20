@@ -55,9 +55,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{E2EF
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "caffe.managed", "caffe.managed\caffe.managed.vcxproj", "{350020CA-75B9-425E-85CA-DD8CF8CFBA9B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_cifar_data", "convert_cifar_data\convert_cifar_data.vcxproj", "{B166B643-C90B-4903-B735-D2D4ED4F2248}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "classification", "classification\classification.vcxproj", "{273E7766-61AA-437C-BCA9-4CA7FE0484D4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_annoset", "convert_annoset\convert_annoset.vcxproj", "{E9C85240-71EC-4D80-9B86-1359029E4136}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_cifar_data", "convert_cifar_data\convert_cifar_data.vcxproj", "{B166B643-C90B-4903-B735-D2D4ED4F2248}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_mnist_data", "convert_mnist_data\convert_mnist_data.vcxproj", "{73EED2A0-EED0-4514-8C95-ADA25CD3C72D}"
 EndProject
