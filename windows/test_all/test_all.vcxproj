@@ -74,9 +74,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\caffe\test\test_accuracy_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_annotated_data_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_argmax_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_batch_norm_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_batch_reindex_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_bbox_util.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_benchmark.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_bias_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_blob.cpp" />
@@ -90,6 +92,8 @@
     <ClCompile Include="..\..\src\caffe\test\test_data_transformer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_db.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_deconvolution_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_detection_evaluate_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_detection_output_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_dummy_data_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_eltwise_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_embed_layer.cpp" />
@@ -109,23 +113,30 @@
     <ClCompile Include="..\..\src\caffe\test\test_io.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_layer_factory.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_lrn_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_lstm_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_math_functions.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_maxpool_dropout_layers.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_memory_data_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_multibox_loss_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_multinomial_logistic_loss_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_mvn_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_net.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_neuron_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_normalize_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_permute_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_platform.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_pooling_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_power_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_prior_box_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_protobuf.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_random_number_generator.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_reduction_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_reshape_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_rnn_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_scale_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_sigmoid_cross_entropy_loss_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_slice_layer.cpp" />
+    <ClCompile Include="..\..\src\caffe\test\test_smooth_L1_loss_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_softmax_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_softmax_with_loss_layer.cpp" />
     <ClCompile Include="..\..\src\caffe\test\test_solver.cpp" />
@@ -172,7 +183,7 @@
     <Import Project="..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets')" />
     <Import Project="..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets')" />
     <Import Project="..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets')" />
-	<Import Project="..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets')" />
+    <Import Project="..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets')" />
     <Import Project="..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets')" />
     <Import Project="..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets')" />
     <Import Project="..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets" Condition="Exists('..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets')" />
@@ -192,7 +203,7 @@
     <Error Condition="!Exists('..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets'))" />
     <Error Condition="!Exists('..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets'))" />
     <Error Condition="!Exists('..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets'))" />
-	<Error Condition="!Exists('..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets'))" />
     <Error Condition="!Exists('..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets'))" />
     <Error Condition="!Exists('..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets'))" />
     <Error Condition="!Exists('..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets'))" />
