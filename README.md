@@ -78,6 +78,7 @@ Now, you should be able to build `.\windows\Caffe.sln`
 | [YOLO](http://pjreddie.com/darknet/yolo/) | 63.4 | 45 | 98 |
 | [Fast YOLO](http://pjreddie.com/darknet/yolo/) | 52.7 | 155 | 98 |
 | SSD300 (VGG16) | 72.1 | 58 | 7308 |
+| SSD300 (VGG16, cuDNN v5) | 72.1 | 72 | 7308 |
 | SSD500 (VGG16) | **75.1** | 23 | 20097 |
 
 </center>
