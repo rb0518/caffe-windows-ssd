@@ -46,11 +46,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{E2EF
 	ProjectSection(SolutionItems) = preProject
 		scripts\BinplaceCudaDependencies.cmd = scripts\BinplaceCudaDependencies.cmd
 		scripts\FixGFlagsNaming.cmd = scripts\FixGFlagsNaming.cmd
+		scripts\MatlabPostBuild.cmd = scripts\MatlabPostBuild.cmd
+		scripts\MatlabPreBuild.cmd = scripts\MatlabPreBuild.cmd
 		scripts\ProtoCompile.cmd = scripts\ProtoCompile.cmd
 		scripts\PythonPostBuild.cmd = scripts\PythonPostBuild.cmd
 		scripts\PythonPreBuild.cmd = scripts\PythonPreBuild.cmd
-		scripts\MatlabPostBuild.cmd = scripts\MatlabPostBuild.cmd
-		scripts\MatlabPreBuild.cmd = scripts\MatlabPreBuild.cmd
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "caffe.managed", "caffe.managed\caffe.managed.vcxproj", "{350020CA-75B9-425E-85CA-DD8CF8CFBA9B}"
@@ -65,7 +65,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_mnist_data", "conve
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convert_mnist_siamese_data", "convert_mnist_siamese_data\convert_mnist_siamese_data.vcxproj", "{3FC9FE87-557C-4BA3-97C1-A71E95DC3C2D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "create_label_map", "create_label_map\create_label_map.vcxproj", "{426309CB-1E0A-478A-8A63-314902D85112}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "get_image_size", "get_image_size\get_image_size.vcxproj", "{7307EAC1-4BE7-486C-B9F9-3A0DC1034E2D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssd_detect", "ssd_detect\ssd_detect.vcxproj", "{0C4B08A6-20B7-46FC-8ADF-656B4B42A9B3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "upgrade_net_proto_binary", "upgrade_net_proto_binary\upgrade_net_proto_binary.vcxproj", "{7971DD9E-FEA9-446B-B432-F3910B8B84A8}"
 EndProject

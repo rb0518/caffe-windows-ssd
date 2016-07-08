@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+﻿<?xml version="1.0" encoding="us-ascii"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.props" Condition="Exists('..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.props')" />
   <Import Project="..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.props" Condition="Exists('..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.props')" />
@@ -14,10 +14,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGUID>{E9C85240-71EC-4D80-9B86-1359029E4136}</ProjectGUID>
+    <ProjectGUID>{0C4B08A6-20B7-46FC-8ADF-656B4B42A9B3}</ProjectGUID>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
-    <RootNamespace>convert_annoset</RootNamespace>
+    <RootNamespace>ssd_detect</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -51,7 +51,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\tools\convert_annoset.cpp" />
+    <ClCompile Include="..\..\examples\ssd\ssd_detect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libcaffe\libcaffe.vcxproj">

@@ -18,6 +18,10 @@
 
 #include "caffe/caffe.hpp"
 
+#if _MSC_VER
+# define snprintf _snprintf
+#endif
+
 namespace caffe {
 
 typedef EmitConstraint_EmitType EmitType;

@@ -10,10 +10,6 @@
 #include "caffe/3rdparty/hungarian.h"
 #include "caffe/util/bbox_util.hpp"
 
-#if _MSC_VER
-# define snprintf _snprintf
-#endif
-
 namespace caffe {
 
 bool SortBBoxAscend(const NormalizedBBox& bbox1, const NormalizedBBox& bbox2) {
@@ -656,7 +652,7 @@ template void GetConfidenceScores(const double* conf_data, const int num,
       vector<map<int, vector<float> > >* conf_preds);
 
 template <typename Dtype>
-void GetConfidenceScores(const Dtype* conf_data, const int num,
+void GetConfidenceScores(const float* conf_data, const int num,
       const int num_preds_per_class, const int num_classes,
       const bool class_major, vector<map<int, vector<float> > >* conf_preds) {
   conf_preds->clear();
