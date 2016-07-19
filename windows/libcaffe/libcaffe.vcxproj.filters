@@ -393,6 +393,9 @@
     <ClCompile Include="..\..\src\caffe\layers\rnn_layer.cpp">
       <Filter>src\layers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\caffe\layers\roi_pooling_layer.cpp">
+      <Filter>src\layers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\caffe\proto\caffe.pb.h">
@@ -746,9 +749,12 @@
     <ClInclude Include="..\..\include\caffe\util\format.hpp">
       <Filter>include\util</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\caffe\layers\roi_pooling_layer.hpp">
+      <Filter>include\layers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-	<CudaCompile Include="..\..\src\caffe\layers\absval_layer.cu">
+    <CudaCompile Include="..\..\src\caffe\layers\absval_layer.cu">
       <Filter>cu\layers</Filter>
     </CudaCompile>
     <CudaCompile Include="..\..\src\caffe\layers\base_data_layer.cu">
@@ -847,9 +853,6 @@
     <CudaCompile Include="..\..\src\caffe\layers\lrn_layer.cu">
       <Filter>cu\layers</Filter>
     </CudaCompile>
-    <CudaCompile Include="..\..\src\caffe\layers\lstm_unit_layer.cu">
-      <Filter>cu\layers</Filter>
-    </CudaCompile>
     <CudaCompile Include="..\..\src\caffe\layers\mvn_layer.cu">
       <Filter>cu\layers</Filter>
     </CudaCompile>
@@ -939,6 +942,12 @@
     </CudaCompile>
     <CudaCompile Include="..\..\src\caffe\util\math_functions.cu">
       <Filter>cu\util</Filter>
+    </CudaCompile>
+    <CudaCompile Include="..\..\src\caffe\layers\lstm_unit_layer.cu">
+      <Filter>cu\layers</Filter>
+    </CudaCompile>
+    <CudaCompile Include="..\..\src\caffe\layers\roi_pooling_layer.cu">
+      <Filter>cu\layers</Filter>
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>

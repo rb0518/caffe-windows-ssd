@@ -248,6 +248,9 @@
     <ClCompile Include="..\..\src\caffe\test\test_smooth_L1_loss_layer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\caffe\test\test_roi_pooling_layer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\caffe\test\test_caffe_main.hpp">
