@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "caffe/blob.hpp"
+#include "caffe/common.hpp"
 #include "caffe/layer.hpp"
 #include "caffe/proto/caffe.pb.h"
 
@@ -20,7 +21,9 @@
 namespace caffe {
 
 /**
- * @brief Computes the SmoothL1 loss as introduced in:@f$
+ * @brief SmoothL1LossLayer
+ *
+ *  Computes the SmoothL1 loss as introduced in:@f$
  *  Fast R-CNN, Ross Girshick, ICCV 2015.
  */
 template <typename Dtype>
@@ -35,8 +38,9 @@ class SmoothL1LossLayer : public LossLayer<Dtype> {
 
   virtual inline const char* type() const { return "SmoothL1Loss"; }
 
+  virtual inline int ExactNumBottomBlobs() const { return -1; }
   virtual inline int MinBottomBlobs() const { return 2; }
-  virtual inline int MaxBottomBlobs() const { return 3; }
+  virtual inline int MaxBottomBlobs() const { return 4; }
 
   /**
    * Unlike most loss layers, in the SmoothL1LossLayer we can backpropagate
@@ -60,7 +64,9 @@ class SmoothL1LossLayer : public LossLayer<Dtype> {
 
   Blob<Dtype> diff_;
   Blob<Dtype> errors_;
+  Blob<Dtype> ones_;
   bool has_weights_;
+  Dtype sigma2_;
 };
 
 }  // namespace caffe

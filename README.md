@@ -13,11 +13,42 @@ SSD is an unified framework for object detection with a single network. You can 
 
 <center>
 
+| System | VOC2007 test *mAP* | **FPS** (Titan X) | Number of Boxes |
+|:-------|:-----:|:-------:|:-------:|
+| [Faster R-CNN (VGG16)](https://github.com/ShaoqingRen/faster_rcnn) | 73.2 | 7 | 300 |
+| [Faster R-CNN (ZF)](https://github.com/ShaoqingRen/faster_rcnn) | 62.1 | 17 | 300 |
+| [YOLO](http://pjreddie.com/darknet/yolo/) | 63.4 | 45 | 98 |
+| [Fast YOLO](http://pjreddie.com/darknet/yolo/) | 52.7 | 155 | 98 |
+| SSD300 (VGG16) | 72.1 | 58 | 7308 |
+| SSD300 (VGG16, cuDNN v5) | 72.1 | 72 | 7308 |
+| SSD500 (VGG16) | **75.1** | 23 | 20097 |
+
+</center>
+
+### Citing SSD
+
+Please cite SSD in your publications if it helps your research:
+
+    @article{liu15ssd,
+      Title = {{SSD}: Single Shot MultiBox Detector},
+      Author = {Liu, Wei and Anguelov, Dragomir and Erhan, Dumitru and Szegedy, Christian and Reed, Scott and Fu, Cheng-Yang and Berg, Alexander C.},
+      Journal = {arXiv preprint arXiv:1512.02325},
+      Year = {2015}
+    }
+    
 ## Windows Setup
 
-[![Travis Build Status](https://api.travis-ci.org/Microsoft/caffe.svg?branch=master)](https://travis-ci.org/Microsoft/caffe) Travis (Linux build)
+This branch of Caffe extends [BVLC-led Caffe](https://github.com/BVLC/caffe) by adding Windows support and other functionalities commonly used by Microsoft's researchers, such as managed-code wrapper, [Faster-RCNN](https://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pdf), [R-FCN](https://arxiv.org/pdf/1605.06409v2.pdf), etc.
 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/58wvckt0rcqtwnr5/branch/master?svg=true)] (https://ci.appveyor.com/project/pavlejosipovic/caffe-3a30a) AppVeyor (Windows build)
+**Contact**: Kenneth Tran (ktran@microsoft.com)
+
+---
+
+# Caffe
+
+|  **`Linux (CPU)`**   |  **`Windows (CPU)`** |
+|-------------------|----------------------|
+| [![Travis Build Status](https://api.travis-ci.org/Microsoft/caffe.svg?branch=master)](https://travis-ci.org/Microsoft/caffe) | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/58wvckt0rcqtwnr5/branch/master?svg=true)](https://ci.appveyor.com/project/pavlejosipovic/caffe-3a30a) |              
 
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
 
@@ -37,7 +68,7 @@ If you don't have CUDA installed, you can experiment with CPU_ONLY build.
 In `.\windows\CommonSettings.props` set `CpuOnlyBuild` to `true` and set `UseCuDNN` to `false`.
 
 ### cuDNN
-Download `cuDNN v3` or `cuDNN v4` [from nVidia website](https://developer.nvidia.com/cudnn).
+Download `cuDNN v4` or `cuDNN v5` [from nVidia website](https://developer.nvidia.com/cudnn).
 Unpack downloaded zip to %CUDA_PATH% (environment variable set by CUDA installer).
 Alternatively, you can unpack zip to any location and set `CuDnnPath` to point to this location in `.\windows\CommonSettings.props`.
 `CuDnnPath` defined in `.\windows\CommonSettings.props`.
@@ -70,29 +101,6 @@ After you have built solution with Matlab support, in order to use it you have t
 
 ### Build
 Now, you should be able to build `.\windows\Caffe.sln`
-
-| System | VOC2007 test *mAP* | **FPS** (Titan X) | Number of Boxes |
-|:-------|:-----:|:-------:|:-------:|
-| [Faster R-CNN (VGG16)](https://github.com/ShaoqingRen/faster_rcnn) | 73.2 | 7 | 300 |
-| [Faster R-CNN (ZF)](https://github.com/ShaoqingRen/faster_rcnn) | 62.1 | 17 | 300 |
-| [YOLO](http://pjreddie.com/darknet/yolo/) | 63.4 | 45 | 98 |
-| [Fast YOLO](http://pjreddie.com/darknet/yolo/) | 52.7 | 155 | 98 |
-| SSD300 (VGG16) | 72.1 | 58 | 7308 |
-| SSD300 (VGG16, cuDNN v5) | 72.1 | 72 | 7308 |
-| SSD500 (VGG16) | **75.1** | 23 | 20097 |
-
-</center>
-
-### Citing SSD
-
-Please cite SSD in your publications if it helps your research:
-
-    @article{liu15ssd,
-      Title = {{SSD}: Single Shot MultiBox Detector},
-      Author = {Liu, Wei and Anguelov, Dragomir and Erhan, Dumitru and Szegedy, Christian and Reed, Scott and Fu, Cheng-Yang and Berg, Alexander C.},
-      Journal = {arXiv preprint arXiv:1512.02325},
-      Year = {2015}
-    }
 
 ### Contents
 1. [Installation](#installation)
