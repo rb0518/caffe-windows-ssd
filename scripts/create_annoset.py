@@ -15,8 +15,8 @@ if __name__ == "__main__":
       help="The file which contains image paths and annotation info.")
   parser.add_argument("outdir",
       help="The output directory which stores the database file.")
-  parser.add_argument("exampledir",
-      help="The directory to store the link of the database files.")
+#  parser.add_argument("exampledir",
+#      help="The directory to store the link of the database files.")
   parser.add_argument("--redo", default = False, action = "store_true",
       help="Recreate the database.")
   parser.add_argument("--anno-type", default = "classification",
@@ -52,7 +52,7 @@ if __name__ == "__main__":
   root_dir = args.root
   list_file = args.listfile
   out_dir = args.outdir
-  example_dir = args.exampledir
+#  example_dir = args.exampledir
 
   redo = args.redo
   anno_type = args.anno_type
@@ -119,7 +119,7 @@ if __name__ == "__main__":
   # get caffe root directory
   caffe_root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
   if anno_type == "detection":
-    cmd = "{}/build/tools/convert_annoset" \
+    cmd = "{}/Build/x64/Release/convert_annoset" \
         " --anno_type={}" \
         " --label_type={}" \
         " --label_map_file={}" \
@@ -139,7 +139,7 @@ if __name__ == "__main__":
             min_dim, max_dim, resize_height, resize_width, backend, shuffle,
             check_size, encode_type, encoded, gray, root_dir, list_file, out_dir)
   elif anno_type == "classification":
-    cmd = "{}/build/tools/convert_annoset" \
+    cmd = "{}/Build/x64/Release/convert_annoset" \
         " --anno_type={}" \
         " --min_dim={}" \
         " --max_dim={}" \
@@ -159,9 +159,11 @@ if __name__ == "__main__":
   process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
   output = process.communicate()[0]
 
+"""
   if not os.path.exists(example_dir):
     os.makedirs(example_dir)
   link_dir = os.path.join(example_dir, os.path.basename(out_dir))
   if os.path.exists(link_dir):
     os.unlink(link_dir)
   os.symlink(out_dir, link_dir)
+"""
