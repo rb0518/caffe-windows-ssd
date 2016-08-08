@@ -1207,9 +1207,9 @@ TEST_F(CPUBBoxUtilTest, TestCumSum) {
   vector<pair<float, int> > pairs;
   vector<int> cumsum;
 
-  pairs.push_back(std::make_pair(0.1f, 0));
-  pairs.push_back(std::make_pair(0.2f, 1));
-  pairs.push_back(std::make_pair(0.3f, 0));
+  pairs.push_back(std::make_pair(0.1, 0));
+  pairs.push_back(std::make_pair(0.2, 1));
+  pairs.push_back(std::make_pair(0.3, 0));
 
   CumSum(pairs, &cumsum);
 
@@ -1223,29 +1223,29 @@ TEST_F(CPUBBoxUtilTest, TestComputeAP) {
   vector<pair<float, int> > tp;
   vector<pair<float, int> > fp;
 
-  tp.push_back(std::make_pair(1.0f, 0));
-  tp.push_back(std::make_pair(1.0f, 1));
-  tp.push_back(std::make_pair(0.9f, 1));
-  tp.push_back(std::make_pair(0.9f, 0));
-  tp.push_back(std::make_pair(0.8f, 1));
-  tp.push_back(std::make_pair(0.7f, 0));
-  tp.push_back(std::make_pair(0.7f, 1));
-  tp.push_back(std::make_pair(0.6f, 0));
-  tp.push_back(std::make_pair(0.5f, 0));
-  tp.push_back(std::make_pair(0.4f, 0));
-  tp.push_back(std::make_pair(0.4f, 1));
+  tp.push_back(std::make_pair(1.0, 0));
+  tp.push_back(std::make_pair(1.0, 1));
+  tp.push_back(std::make_pair(0.9, 1));
+  tp.push_back(std::make_pair(0.9, 0));
+  tp.push_back(std::make_pair(0.8, 1));
+  tp.push_back(std::make_pair(0.7, 0));
+  tp.push_back(std::make_pair(0.7, 1));
+  tp.push_back(std::make_pair(0.6, 0));
+  tp.push_back(std::make_pair(0.5, 0));
+  tp.push_back(std::make_pair(0.4, 0));
+  tp.push_back(std::make_pair(0.4, 1));
 
-  fp.push_back(std::make_pair(1.0f, 1));
-  fp.push_back(std::make_pair(1.0f, 0));
-  fp.push_back(std::make_pair(0.9f, 0));
-  fp.push_back(std::make_pair(0.9f, 1));
-  fp.push_back(std::make_pair(0.8f, 0));
-  fp.push_back(std::make_pair(0.7f, 1));
-  fp.push_back(std::make_pair(0.7f, 0));
-  fp.push_back(std::make_pair(0.6f, 1));
-  fp.push_back(std::make_pair(0.5f, 1));
-  fp.push_back(std::make_pair(0.4f, 1));
-  fp.push_back(std::make_pair(0.4f, 0));
+  fp.push_back(std::make_pair(1.0, 1));
+  fp.push_back(std::make_pair(1.0, 0));
+  fp.push_back(std::make_pair(0.9, 0));
+  fp.push_back(std::make_pair(0.9, 1));
+  fp.push_back(std::make_pair(0.8, 0));
+  fp.push_back(std::make_pair(0.7, 1));
+  fp.push_back(std::make_pair(0.7, 0));
+  fp.push_back(std::make_pair(0.6, 1));
+  fp.push_back(std::make_pair(0.5, 1));
+  fp.push_back(std::make_pair(0.4, 1));
+  fp.push_back(std::make_pair(0.4, 0));
 
   float eps = 1e-5;
   vector<float> prec, rec;
