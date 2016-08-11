@@ -619,7 +619,7 @@ void GetLocPredictions(const Dtype* loc_data, const int num,
 }
 
 // Explicit initialization.
-template void GetLocPredictions(const Dtype* loc_data, const int num,
+template void GetLocPredictions(const float* loc_data, const int num,
       const int num_preds_per_class, const int num_loc_classes,
       const bool share_location, vector<LabelBBox>* loc_preds);
 template void GetLocPredictions(const double* loc_data, const int num,
@@ -653,7 +653,7 @@ template void GetConfidenceScores(const double* conf_data, const int num,
       vector<map<int, vector<float> > >* conf_preds);
 
 template <typename Dtype>
-void GetConfidenceScores(const float* conf_data, const int num,
+void GetConfidenceScores(const Dtype* conf_data, const int num,
       const int num_preds_per_class, const int num_classes,
       const bool class_major, vector<map<int, vector<float> > >* conf_preds) {
   conf_preds->clear();
