@@ -109,67 +109,54 @@ Now, you should be able to build `.\windows\Caffe.sln`
 4. [Models](#models)
 
 ### Installation
-1. Get the code. We will call the directory that you cloned Caffe into `$CAFFE_ROOT`
+1. Get the code. We will call the directory that you cloned Caffe into `%CAFFE_ROOT%`
   ```Shell
-  git clone https://github.com/weiliu89/caffe.git
+  git clone https://github.com/conner99/caffe.git
   cd caffe
-  git checkout ssd
+  git checkout ssd-microsoft
   ```
 
 2. Build the code. Please follow [Caffe instruction](http://caffe.berkeleyvision.org/installation.html) to install all necessary packages and build it.
-  ```Shell
-  # Modify Makefile.config according to your Caffe installation.
-  cp Makefile.config.example Makefile.config
-  make -j8
-  # Make sure to include $CAFFE_ROOT/python to your PYTHONPATH.
-  make py
-  make test -j8
-  make runtest -j8
-  # If you have multiple GPUs installed in your machine, make runtest might fail. If so, try following:
-  export CUDA_VISIBLE_DEVICES=0; make runtest -j8
-  # If you have error: "Check failed: error == cudaSuccess (10 vs. 0)  invalid device ordinal",
-  # first make sure you have the specified GPUs, or try following if you have multiple GPUs:
-  unset CUDA_VISIBLE_DEVICES
-  ```
 
 ### Preparation
-1. Download [fully convolutional reduced (atrous) VGGNet](https://gist.github.com/weiliu89/2ed6e13bfd5b57cf81d6). By default, we assume the model is stored in `$CAFFE_ROOT/models/VGGNet/`
+1. Download [fully convolutional reduced (atrous) VGGNet](https://gist.github.com/weiliu89/2ed6e13bfd5b57cf81d6). By default, we assume the model is stored in `%CAFFE_ROOT%\models\VGGNet\`
 
-2. Download VOC2007 and VOC2012 dataset. By default, we assume the data is stored in `$HOME/data/`
-  ```Shell
-  # Download the data.
-  cd $HOME/data
-  wget http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
-  wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
-  wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
-  # Extract the data.
-  tar -xvf VOCtrainval_11-May-2012.tar
-  tar -xvf VOCtrainval_06-Nov-2007.tar
-  tar -xvf VOCtest_06-Nov-2007.tar
+2. Download VOC2007 and VOC2012 dataset. By default, we assume the data is stored in `%CAFFE_ROOT%\data\VOC0712`
+  
+    http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
+    http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
+    http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
+  ```Explorer
+# Extract the data manual.
+%CAFFE_ROOT%\data\VOC0712\
+		VOC2007\Annotations
+		VOC2007\JPEGImages
+		VOC2012\Annotations
+		VOC2012\JPEGImages
+
   ```
 
 3. Create the LMDB file.
   ```Shell
-  cd $CAFFE_ROOT
-  # Create the trainval.txt, test.txt, and test_name_size.txt in data/VOC0712/
-  ./data/VOC0712/create_list.sh
-  # You can modify the parameters in create_data.sh if needed.
+  cd %CAFFE_ROOT%
+  # Create test_name_size.txt in data\VOC0712\
+  .\data\VOC0712\get_image_size.bat
+  # You can modify the parameters in create_data.bat if needed.
   # It will create lmdb files for trainval and test with encoded original image:
-  #   - $HOME/data/VOCdevkit/VOC0712/lmdb/VOC0712_trainval_lmdb
-  #   - $HOME/data/VOCdevkit/VOC0712/lmdb/VOC0712_test_lmdb
-  # and make soft links at examples/VOC0712/
-  ./data/VOC0712/create_data.sh
+  #   - %CAFFE_ROOT%\data\VOC0712\trainval_lmdb
+  #   - %CAFFE_ROOT%\data\VOC0712\test_lmdb
+  .\data\VOC0712\create_data.bat
   ```
 
 ### Train/Eval
 1. Train your model and evaluate the model on the fly.
   ```Shell
   # It will create model definition files and save snapshot models in:
-  #   - $CAFFE_ROOT/models/VGGNet/VOC0712/SSD_300x300/
+  #   - %CAFFE_ROOT%\models\VGGNet\VOC0712\SSD_300x300\
   # and job file, log file, and the python script in:
-  #   - $CAFFE_ROOT/jobs/VGGNet/VOC0712/SSD_300x300/
+  #   - %CAFFE_ROOT%\jobs\VGGNet\VOC0712\SSD_300x300\
   # and save temporary evaluation results in:
-  #   - $HOME/data/VOCdevkit/results/VOC2007/SSD_300x300/
+  #   - %CAFFE_ROOT%\data\VOC2007\results\SSD_300x300\
   # It should reach 72.* mAP at 60k iterations.
   python examples/ssd/ssd_pascal.py
   ```
@@ -178,13 +165,13 @@ Now, you should be able to build `.\windows\Caffe.sln`
 2. Evaluate the most recent snapshot.
   ```Shell
   # If you would like to test a model you trained, you can do:
-  python examples/ssd/score_ssd_pascal.py
+  python examples\ssd\score_ssd_pascal.py
   ```
 
 3. Test your model using a webcam. Note: press <kbd>esc</kbd> to stop.
   ```Shell
   # If you would like to attach a webcam to a model you trained, you can do:
-  python examples/ssd/ssd_pascal_webcam.py
+  python examples\ssd\ssd_pascal_webcam.py
   ```
   [Here](https://drive.google.com/file/d/0BzKzrI_SkD1_R09NcjM1eElLcWc/view) is a demo video of running a SSD500 model trained on [MSCOCO](http://mscoco.org) dataset.
 

@@ -1,4 +1,4 @@
-from __future__ import print_function
+﻿from __future__ import print_function
 import caffe
 from caffe.model_libs import *
 from google.protobuf import text_format
@@ -52,11 +52,13 @@ run_soon = True
 resume_training = True
 # If true, Remove old model files.
 remove_old_models = False
+# Set true if you want to train with CPU
+use_cpu = False
 
-# The database file for training data. Created by data/VOC0712/create_data.sh
-train_data = "examples/VOC0712/VOC0712_trainval_lmdb"
-# The database file for testing data. Created by data/VOC0712/create_data.sh
-test_data = "examples/VOC0712/VOC0712_test_lmdb"
+# The database file for training data. Created by data/VOC0712/create_data.bat
+train_data = "data/VOC0712/trainval_lmdb"
+# The database file for testing data. Created by data/VOC0712/create_data.bat
+test_data = "data/VOC0712/test_lmdb"
 # Specify the batch sampler.
 resize_width = 300
 resize_height = 300
@@ -200,7 +202,7 @@ snapshot_dir = "models/VGGNet/VOC0712/{}".format(job_name)
 # Directory which stores the job script and log file.
 job_dir = "jobs/VGGNet/VOC0712/{}".format(job_name)
 # Directory which stores the detection results.
-output_result_dir = "{}/data/VOCdevkit/results/VOC2007/{}/Main".format(os.environ['HOME'], job_name)
+output_result_dir = "data/VOC0712/results/{}/Main".format(job_name)
 
 # model definition files.
 train_net_file = "{}/train.prototxt".format(save_dir)
@@ -210,7 +212,7 @@ solver_file = "{}/solver.prototxt".format(save_dir)
 # snapshot prefix.
 snapshot_prefix = "{}/{}".format(snapshot_dir, model_name)
 # job script path.
-job_file = "{}/{}.sh".format(job_dir, model_name)
+job_file = "{}/{}_train.bat".format(job_dir, model_name)
 
 # Stores the test image names and sizes. Created by data/VOC0712/create_list.sh
 name_size_file = "data/VOC0712/test_name_size.txt"
@@ -282,12 +284,18 @@ clip = True
 
 # Solver parameters.
 # Defining which GPUs to use.
-gpus = "0,1,2,3"
+gpus = "0" #"0,1,2,3"
 gpulist = gpus.split(",")
 num_gpus = len(gpulist)
 
+# Set true if you want to train with CPU
+use_cpu = False
+
 # Divide the mini-batch to different GPUs.
-batch_size = 32
+if use_cpu:
+  num_gpus = 0
+
+batch_size = 2 # 32
 accum_batch_size = 32
 iter_size = accum_batch_size / batch_size
 solver_mode = P.Solver.CPU
@@ -487,11 +495,13 @@ for file in os.listdir(snapshot_dir):
     if iter > max_iter:
       max_iter = iter
 
-train_src_param = '--weights="{}" \\\n'.format(pretrain_model)
+train_src_param = ''	  
+if os.path.isfile(pretrain_model):  
+  train_src_param = '\t--weights={} ^\n'.format(os.path.normpath(pretrain_model))
 if resume_training:
   if max_iter > 0:
-    train_src_param = '--snapshot="{}_iter_{}.solverstate" \\\n'.format(snapshot_prefix, max_iter)
-
+    train_src_param = '\t--snapshot={}_iter_{}.solverstate ^\n'.format(os.path.normpath(snapshot_prefix), max_iter)
+	
 if remove_old_models:
   # Remove any snapshots smaller than max_iter.
   for file in os.listdir(snapshot_dir):
@@ -508,15 +518,20 @@ if remove_old_models:
 
 # Create job file.
 with open(job_file, 'w') as f:
+  f.write('SET GLOG_logtostderr=1\n')
+  f.write('set Datum=%DATE:~6,4%_%DATE:~3,2%_%DATE:~0,2%\n')
+  f.write('set Uhrzeit=%TIME:~0,2%_%TIME:~3,2%_%TIME:~6,2%\n')
+  f.write('set TIMESTAMP=%Datum%_%Uhrzeit%\n')
+  f.write('\n'.format(caffe_root))
   f.write('cd {}\n'.format(caffe_root))
-  f.write('./build/tools/caffe train \\\n')
-  f.write('--solver="{}" \\\n'.format(solver_file))
-  f.write(train_src_param)
+  f.write('"Build\{}\Release\caffe" train ^\n'.format('x64'))
+  f.write('\t--solver={} ^\n'.format(os.path.normpath(solver_file)))
+  f.write(train_src_param) 
   if solver_param['solver_mode'] == P.Solver.GPU:
-    f.write('--gpu {} 2>&1 | tee {}/{}.log\n'.format(gpus, job_dir, model_name))
+	f.write('\t--gpu {} 2>&1 | "tools\mtee" "{}\{}-train-%TIMESTAMP%.log"\n'.format(gpus, os.path.normpath(job_dir), model_name))   
   else:
-    f.write('2>&1 | tee {}/{}.log\n'.format(job_dir, model_name))
-
+    f.write('\t2>&1 | "tools\mtee" "{}\{}-train-%TIMESTAMP%.log"\n'.format(os.path.normpath(job_dir), model_name))
+   
 # Copy the python script to job_dir.
 py_file = os.path.abspath(__file__)
 shutil.copy(py_file, job_dir)
@@ -524,4 +539,5 @@ shutil.copy(py_file, job_dir)
 # Run the job.
 os.chmod(job_file, stat.S_IRWXU)
 if run_soon:
-  subprocess.call(job_file, shell=True)
+  subprocess.call(os.path.normpath(job_file), shell=True)
+  

@@ -47,6 +47,8 @@ caffe_root = os.getcwd()
 
 # Set true if you want to start training right after generating all files.
 run_soon = True
+# Set true if you want to test with CPU
+use_cpu = False
 # The device id for webcam
 webcam_id = 0
 
@@ -71,7 +73,10 @@ resize_height = 300
 # Set the number of test iterations to the maximum integer number.
 test_iter = int(math.pow(2, 29) - 1)
 # Use GPU or CPU
-solver_mode = P.Solver.GPU
+if use_cpu:
+  solver_mode = P.Solver.CPU
+else:
+  solver_mode = P.Solver.GPU
 # Defining which GPUs to use.
 gpus = "0"
 # Number of frames to be processed per batch.
@@ -139,7 +144,7 @@ test_net_file = "{}/test.prototxt".format(save_dir)
 # snapshot prefix.
 snapshot_prefix = "{}/{}".format(snapshot_dir, model_name)
 # job script path.
-job_file = "{}/{}.sh".format(job_dir, model_name)
+job_file = "{}/{}_webcam.bat".format(job_dir, model_name)
 
 # Find most recent snapshot.
 max_iter = 0
@@ -244,12 +249,12 @@ shutil.copy(test_net_file, job_dir)
 # Create job file.
 with open(job_file, 'w') as f:
   f.write('cd {}\n'.format(caffe_root))
-  f.write('./build/tools/caffe test \\\n')
-  f.write('--model="{}" \\\n'.format(test_net_file))
-  f.write('--weights="{}" \\\n'.format(pretrain_model))
-  f.write('--iterations="{}" \\\n'.format(test_iter))
+  f.write('"Build\{}\Release\caffe" test ^\n'.format('x64'))
+  f.write('--model={} ^\n'.format(os.path.normpath(test_net_file)))
+  f.write('--weights={} ^\n'.format(os.path.normpath(pretrain_model)))
+  f.write('--iterations={}'.format(test_iter))
   if solver_mode == P.Solver.GPU:
-    f.write('--gpu {}\n'.format(gpus))
+    f.write(' ^\n' + '--gpu {}\n'.format(gpus))
 
 # Copy the python script to job_dir.
 py_file = os.path.abspath(__file__)
@@ -258,4 +263,4 @@ shutil.copy(py_file, job_dir)
 # Run the job.
 os.chmod(job_file, stat.S_IRWXU)
 if run_soon:
-  subprocess.call(job_file, shell=True)
+  subprocess.call(os.path.normpath(job_file), shell=True)
