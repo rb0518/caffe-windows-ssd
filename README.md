@@ -93,7 +93,7 @@ add GLOG_NO_ABBREVIATED_SEVERITIES to CommonSettings.props中PreprocessDefinitio
 ### 懒人包内容
 
 - 里面`Boost`和`LEVELDB`有两个目录带_163后缀的是我自己编译的`boost1.631`版本，`leveldb_163`目录是我用`boost_1.63`版本编译后的运行库，在选择时这两个应该保持一致
--`Opencv320`目录是我现在使用的，由于包含`contrib`所以很大，欢迎使用。我将`thirdparty`放到了`caffe`目录外，这样其它项目也能共享这些支撑库，节约空间，将`thirdparty\bins`添加到系统`path`里
+- `Opencv320`目录是我现在使用的，由于包含`contrib`所以很大，欢迎使用。我将`thirdparty`放到了`caffe`目录外，这样其它项目也能共享这些支撑库，节约空间，将`thirdparty\bins`添加到系统`path`里
 - 包里内容是从`happynear`里内容,只是由于`boost1.61`是用`python2.7`选项编译的，所以我替换成了自己编译的支持`python3.x`版本，如果你是使用python2.7版本的，请从[happynear](https://github.com/happynear/caffe-windows)处下载原始的版本。
 
 ---
