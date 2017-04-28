@@ -63,28 +63,37 @@
 搜索所有`regex`的字符，将头文件和`regex::xxx`内容都注释掉。
 
 ## 2 GLOG_NO_ABBREVIATED_SEVERITIES miss
-add GLOG_NO_ABBREVIATED_SEVERITIES to CommonSettings.props PreprocessDefinitions。
+add GLOG_NO_ABBREVIATED_SEVERITIES to CommonSettings.props中PreprocessDefinitions中。
 
 ## 3 找不到".\caffe\3rdparty\hungarian.h"文件
-搜索whole solution发现这个头文件根本未调用过，所以从工程中直接删除文件支持。
+搜索solution发现这个头文件根本未调用过，所以从工程中直接删除文件包含。
 
 ## 4 expected an identifier in caffe.pb.h 
-在bbox_util.cu，将两处`include "thrust\xxx` 相关头文件引用去掉，同时将代码中`thrust::xxx`去掉。
+在bbox_util.cu，将两处`include "thrust\xxx`相关头文件引用去掉，同时将代码中`thrust::xxx`去掉。
 
 ## 5 caffe.proj 连接libcaffe.lib中GPU相关函数无法连接
 修改配置后，重新打开工程文件后，要全清然后Rebuild libcaffe
 
+## 6 pycaffe编译出错
+参考了[happynear](https://github.com/happynear/caffe-windows)中处理方法，在'_caffe.cpp'文件中添加相尖DEFINE_BOOST_GET_POINTER定义，编译通过
+。测试输出如下，进一步细节测试未进行
+```ptyhon
+>>>import caffe
+>>>caffe.__version__
+`CAFFEVERSION·
+```
+
 # Remark 
 全部编译通过，经测试成功，但CPU方式运行速度奇慢无比，还应该有代码问题，明天重新编译后测试。
-直接测试的训练好的模型，后面将继续深入学习。
 
+是通过修改[7oud](https://github.com/7oud/caffe-ssd-win) 克隆版本，参考了[happynear](https://github.com/happynear/caffe-windows)的方法。我自己修改了happynear提供的'thirdparty'库，整理后会提供下载
+
+---
+以下是作者原来的相关信息
 
 # SSD: Single Shot MultiBox Detector
 
-F:\\deepLearning\\VGGNet\\deploy.prototxt F:\\deepLearning\\VGGNet\\VGG_VOC0712_SSD_300x300_iter_120000  F:\\deepLearning\VGGNet\list.txt
-
 By [Wei Liu](http://www.cs.unc.edu/~wliu/), [Dragomir Anguelov](http://research.google.com/pubs/DragomirAnguelov.html), [Dumitru Erhan](http://research.google.com/pubs/DumitruErhan.html), [Christian Szegedy](http://research.google.com/pubs/ChristianSzegedy.html), [Scott Reed](http://www-personal.umich.edu/~reedscot/), Cheng-Yang Fu, [Alexander C. Berg](http://acberg.com).
-
 
 ### Introduction
 
