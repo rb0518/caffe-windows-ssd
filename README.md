@@ -1,4 +1,87 @@
+# 修改记录
+## 准备工作
+- 在`caffe/window`文件夹中用系统文件浏览器搜索packages，选中所有搜索结果文件，右键删除所有文件
+- 用`Visual Studio Code`打开`caffe/window`目录，编辑所有的.vcproj文件，删除如以下的内容
+```
+  <Import Project="..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.props" Condition="Exists('..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.props')" />
+  <Import Project="..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.props" Condition="Exists('..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.props')" />
+  <Import Project="..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.props" Condition="Exists('..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.props')" />
+
+```
+
+```
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\NugetPackages\OpenBLAS.0.2.14.1\build\native\openblas.targets" Condition="Exists('..\..\..\NugetPackages\OpenBLAS.0.2.14.1\build\native\openblas.targets')" />
+    <Import Project="..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.targets" Condition="Exists('..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.targets')" />
+    <Import Project="..\..\..\NugetPackages\hdf5-v120-complete.1.8.15.2\build\native\hdf5-v120.targets" Condition="Exists('..\..\..\NugetPackages\hdf5-v120-complete.1.8.15.2\build\native\hdf5-v120.targets')" />
+    <Import Project="..\..\..\NugetPackages\boost_chrono-vc120.1.59.0.0\build\native\boost_chrono-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_chrono-vc120.1.59.0.0\build\native\boost_chrono-vc120.targets')" />
+    <Import Project="..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets')" />
+    <Import Project="..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets')" />
+    <Import Project="..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets')" />
+	<Import Project="..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets')" />
+  	<Import Project="..\..\..\NugetPackages\boost.1.59.0.0\build\native\boost.targets" Condition="Exists('..\..\..\NugetPackages\boost.1.59.0.0\build\native\boost.targets')" />
+    <Import Project="..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets')" />
+    <Import Project="..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets" Condition="Exists('..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets')" />
+    <Import Project="..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.targets" Condition="Exists('..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.targets')" />
+    <Import Project="..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.targets" Condition="Exists('..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.targets')" />
+    <Import Project="..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets" Condition="Exists('..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets')" />
+    <Import Project="..\..\..\NugetPackages\LevelDB-vc120.1.2.0.0\build\native\LevelDB-vc120.targets" Condition="Exists('..\..\..\NugetPackages\LevelDB-vc120.1.2.0.0\build\native\LevelDB-vc120.targets')" />
+    <Import Project="..\..\..\NugetPackages\lmdb-v120-clean.0.9.14.0\build\native\lmdb-v120-clean.targets" Condition="Exists('..\..\..\NugetPackages\lmdb-v120-clean.0.9.14.0\build\native\lmdb-v120-clean.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\NugetPackages\OpenBLAS.0.2.14.1\build\native\openblas.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\OpenBLAS.0.2.14.1\build\native\openblas.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.props'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\OpenCV.2.4.10\build\native\OpenCV.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\hdf5-v120-complete.1.8.15.2\build\native\hdf5-v120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\hdf5-v120-complete.1.8.15.2\build\native\hdf5-v120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost_chrono-vc120.1.59.0.0\build\native\boost_chrono-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_chrono-vc120.1.59.0.0\build\native\boost_chrono-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_date_time-vc120.1.59.0.0\build\native\boost_date_time-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_filesystem-vc120.1.59.0.0\build\native\boost_filesystem-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_regex-vc120.1.59.0.0\build\native\boost_regex-vc120.targets'))" />
+	<Error Condition="!Exists('..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_system-vc120.1.59.0.0\build\native\boost_system-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost.1.59.0.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost.1.59.0.0\build\native\boost.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_thread-vc120.1.59.0.0\build\native\boost_thread-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\boost_python2.7-vc120.1.59.0.0\build\native\boost_python-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.props'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\gflags.2.1.2.1\build\native\gflags.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.props'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\glog.0.3.3.0\build\native\glog.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\protobuf-v120.2.6.1\build\native\protobuf-v120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\LevelDB-vc120.1.2.0.0\build\native\LevelDB-vc120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\LevelDB-vc120.1.2.0.0\build\native\LevelDB-vc120.targets'))" />
+    <Error Condition="!Exists('..\..\..\NugetPackages\lmdb-v120-clean.0.9.14.0\build\native\lmdb-v120-clean.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\NugetPackages\lmdb-v120-clean.0.9.14.0\build\native\lmdb-v120-clean.targets'))" />
+  </Target>
+
+```
+修改`caffe.sln`中VS对应版本从`12.0`到`14.0`，修改目录下每一个`.vcproj`文件中`120`到`140`，可以直接用`VS2015`打开代码，而不是`VS2013`了。
+`CPU_ONLY` compiler is OK. `GPU ` not success.
+
+# 错误解决:
+
+## 1 boost\regex 相关错误
+搜索所有`regex`的字符，将头文件和`regex::xxx`内容都注释掉。
+
+## 2 GLOG_NO_ABBREVIATED_SEVERITIES miss
+add GLOG_NO_ABBREVIATED_SEVERITIES to CommonSettings.props PreprocessDefinitions。
+
+## 3 找不到".\caffe\3rdparty\hungarian.h"文件
+搜索whole solution发现这个头文件根本未调用过，所以从工程中直接删除文件支持。
+
+## 4 expected an identifier in caffe.pb.h 
+在bbox_util.cu，将两处`include "thrust\xxx` 相关头文件引用去掉，同时将代码中`thrust::xxx`去掉。
+
+## 5 caffe.proj 连接libcaffe.lib中GPU相关函数无法连接
+修改配置后，重新打开工程文件后，要全清然后Rebuild libcaffe
+
+# Remark 
+全部编译通过，经测试成功，但CPU方式运行速度奇慢无比，还应该有代码问题，明天重新编译后测试。
+直接测试的训练好的模型，后面将继续深入学习。
+
+
 # SSD: Single Shot MultiBox Detector
+
+F:\\deepLearning\\VGGNet\\deploy.prototxt F:\\deepLearning\\VGGNet\\VGG_VOC0712_SSD_300x300_iter_120000  F:\\deepLearning\VGGNet\list.txt
 
 By [Wei Liu](http://www.cs.unc.edu/~wliu/), [Dragomir Anguelov](http://research.google.com/pubs/DragomirAnguelov.html), [Dumitru Erhan](http://research.google.com/pubs/DumitruErhan.html), [Christian Szegedy](http://research.google.com/pubs/ChristianSzegedy.html), [Scott Reed](http://www-personal.umich.edu/~reedscot/), Cheng-Yang Fu, [Alexander C. Berg](http://acberg.com).
 

@@ -102,3 +102,7 @@ MANIFEST-*
 *.opensdf
 *.pdb
 *.props
+
+#ipch 
+windows/*
+*.ipch

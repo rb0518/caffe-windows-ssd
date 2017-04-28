@@ -238,7 +238,7 @@ DEFINE_string(file_type, "image",
     "The file type in the list_file. Currently support image and video.");
 DEFINE_string(out_file, "",
     "If provided, store the detection results in the out_file.");
-DEFINE_double(confidence_threshold, 0.01,
+DEFINE_double(confidence_threshold, 0.5,
     "Only store detections with score higher than the threshold.");
 
 int main(int argc, char** argv) {
@@ -256,8 +256,8 @@ int main(int argc, char** argv) {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
   if (argc < 4) {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "examples/ssd/ssd_detect");
-    return 1;
+	  gflags::ShowUsageWithFlagsRestrict(argv[0], "examples/ssd/ssd_detect");
+	  return 1;
   }
 
   const string& model_file = argv[1];
@@ -281,7 +281,7 @@ int main(int argc, char** argv) {
     }
   }
   std::ostream out(buf);
-
+  char *labelname[] = { "background","aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor" };
   // Process image one by one.
   std::ifstream infile(argv[3]);
   std::string file;
@@ -305,8 +305,22 @@ int main(int argc, char** argv) {
           out << static_cast<int>(d[4] * img.rows) << " ";
           out << static_cast<int>(d[5] * img.cols) << " ";
           out << static_cast<int>(d[6] * img.rows) << std::endl;
+
+		  // blog.csdn.net/muwu5635/article/details/60874721
+		  int posx = static_cast<int>(d[3] * img.cols);
+		  int posy = static_cast<int>(d[4] * img.rows);
+		  int posw = static_cast<int>(d[5] * img.cols) - posx;
+		  int posh = static_cast<int>(d[6] * img.rows) - posy;
+		  cv::Rect pos(posx, posy, posw, posh);
+
+		  cv::rectangle(img, pos, cv::Scalar(0, static_cast<int>(d[1]) / 21.0 * 255, 255));
+
+		  std::string strResultLabel = std::string(labelname[static_cast<int>(d[1])]);
+		  cv::putText(img, strResultLabel, cv::Point(posx, posy), CV_FONT_HERSHEY_COMPLEX, 0.4,
+			  cv::Scalar(0, static_cast<int>(d[1]) / 21.0 * 255, 255));
         }
       }
+	  cv::imshow(file, img);
     } else if (file_type == "video") {
       cv::VideoCapture cap(file);
       if (!cap.isOpened()) {
@@ -349,6 +363,10 @@ int main(int argc, char** argv) {
       LOG(FATAL) << "Unknown file_type: " << file_type;
     }
   }
+
+  auto inKey = cv::waitKey();
+  cv::destroyAllWindows();
+
   return 0;
 }
 #else
